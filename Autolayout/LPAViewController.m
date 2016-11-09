@@ -14,18 +14,31 @@
 @property (nonatomic, weak) UIButton *  portraitButton;
 @property (nonatomic, weak) UIButton *  landscapeButton;
 
-@property (nonatomic, weak) UIView *                framingView;
+@property (nonatomic, weak) UIView *    framingView;
+@property (nonatomic, weak) UIView *    purpleBox;
+
 @property (nonatomic, weak) NSLayoutConstraint *    framingViewHeight;
 @property (nonatomic, weak) NSLayoutConstraint *    framingViewWidth;
 
 @end
 
+
 @implementation LPAViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+//    [super viewDidLoad];
+//    
+//    UIView *greenBox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+//    
+//    greenBox.backgroundColor = [UIColor blueColor];
+//
+//    
+//    self.greenBox = greenBox;
+//    
+//    [self.view addSubview:greenBox];
+
+
     [super viewDidLoad];
-    
     UIButton *squareButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [squareButton setTitle:@"Square" forState:UIControlStateNormal];
     [squareButton addTarget:self action:@selector(resizeFramingView:) forControlEvents:UIControlEventTouchUpInside];
@@ -106,6 +119,33 @@
     self.framingViewWidth = framingViewWidth;
     
     // Set up your views and constraints here
+    
+    
+        UIView *purpleBox = [[UIView alloc] initWithFrame:CGRectZero];
+        purpleBox.backgroundColor = [UIColor purpleColor];
+        purpleBox.translatesAutoresizingMaskIntoConstraints = NO;
+        //self.purpleBox = purpleBox;
+        [self.framingView addSubview:purpleBox];
+    
+    NSLayoutConstraint *frameingViewPurpleBottom = [NSLayoutConstraint constraintWithItem:purpleBox attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:framingView attribute:NSLayoutAttributeBottom multiplier:1 constant: -20];
+    
+    
+    NSLayoutConstraint *frameingViewPurpleRight = [NSLayoutConstraint constraintWithItem:purpleBox attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:framingView attribute:NSLayoutAttributeRight multiplier:1 constant: -20];
+    
+    
+    NSLayoutConstraint *frameingViewPurpleWeidth = [NSLayoutConstraint constraintWithItem:purpleBox attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:framingView attribute:NSLayoutAttributeWidth multiplier:(305.00/500.00) constant: 0];
+    
+    
+    NSLayoutConstraint *frameingViewPurpleHeight = [NSLayoutConstraint constraintWithItem:purpleBox attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant: 50];
+    
+    [framingView addConstraint:frameingViewPurpleBottom];
+    [framingView addConstraint:frameingViewPurpleRight];
+    [framingView addConstraint:frameingViewPurpleWeidth];
+    [framingView addConstraint:frameingViewPurpleHeight];
+    
+    
+    
+    
     
     
 }
